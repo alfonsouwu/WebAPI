@@ -1,16 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using WebAPI.Resources;
+using System.Data;
+using Newtonsoft.Json;
 
 namespace WebAPI.Controllers
 {
     [Route("[controller]")]
     public class UsuariosController : Controller
     {
+        #region Logger
         private readonly ILogger<UsuariosController> _logger;
 
         public UsuariosController(ILogger<UsuariosController> logger)
@@ -28,5 +26,32 @@ namespace WebAPI.Controllers
         {
             return View("Error!");
         }
+        #endregion
+
+        #region CRUD         
+        [HttpGet(Name = "GetUsuarios")]
+        public dynamic ListaUsuarios()
+        {
+
+            List<Parametro> parametros = new List<Parametro>{
+                new Parametro("id", "0")
+            };
+
+            DataTable dt = DataBase.Listar("sp_se_usuarios",parametros);
+            string json = JsonConvert.SerializeObject(dt);
+
+            return new            
+            {
+                success = true,
+                message = "exito",
+                result = new
+                {
+                    usuarios = json 
+                }
+            };
+                
+        }
+
+        #endregion
     }
 }

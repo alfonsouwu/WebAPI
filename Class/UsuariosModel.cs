@@ -6,7 +6,7 @@ namespace WebAPI.Class
 {
     public class UsuariosModel
     {
-        public static DataTable listaUsuarios(int id = 0)
+        public static DataTable Usuarios_Get(int id = 0)
         {
 
             List<Parametro> parametros = new List<Parametro>{
@@ -19,7 +19,7 @@ namespace WebAPI.Class
             return dt;               
         }
 
-        public static DataTable UIUsuarios(usuarios Usuarios)
+        public static DataTable Usuarios_IU(usuarios_class Usuarios)
         {
             List<Parametro> parametros = new List<Parametro>()
             {

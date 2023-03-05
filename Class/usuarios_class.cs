@@ -1,6 +1,6 @@
 namespace WebAPI.Class
 {
-    public class usuarios
+    public class usuarios_class
     {
         public int id { get; set; }
         public string usuario { get; set; } = "";

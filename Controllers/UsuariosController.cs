@@ -14,7 +14,7 @@ namespace WebAPI.Controllers
         [HttpGet(Name = "Lista Usuarios")]
         public dynamic UsuariosGet(int id = 0)
         {
-            DataTable dt = UsuariosModel.listaUsuarios(id);
+            DataTable dt = UsuariosModel.Usuarios_Get(id);
             string jsonUsuarios = JsonConvert.SerializeObject(dt);
 
             return new            
@@ -23,15 +23,15 @@ namespace WebAPI.Controllers
                 message = "exito",
                 result = new
                 {
-                    usuarios = JsonConvert.DeserializeObject<List<usuarios>>(jsonUsuarios) 
+                    usuarios = JsonConvert.DeserializeObject<List<usuarios_class>>(jsonUsuarios) 
                 }
             };                
         }
 
         [HttpPost(Name = "Actualiza o inserta Usuarios")]
-        public dynamic UsuarioUI(usuarios Usuarios) 
+        public dynamic UsuarioUI(usuarios_class Usuarios) 
         {        
-            DataTable dt = UsuariosModel.UIUsuarios(Usuarios);
+            DataTable dt = UsuariosModel.Usuarios_IU(Usuarios);
             string jsonUsuarios = JsonConvert.SerializeObject(dt);
 
             return new            
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
                 message = "exito",
                 result = new
                 {
-                    usuarios = JsonConvert.DeserializeObject<List<usuarios>>(jsonUsuarios) 
+                    usuarios = JsonConvert.DeserializeObject<List<usuarios_class>>(jsonUsuarios) 
                 }
             };
         }

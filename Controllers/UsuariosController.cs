@@ -11,15 +11,10 @@ namespace WebAPI.Controllers
     {
         #region CRUD         
 
-        [HttpGet(Name = "GetUsuarios")]
-        public dynamic GetUsuarios(int id = 0)
+        [HttpGet(Name = "Lista Usuarios")]
+        public dynamic UsuariosGet(int id = 0)
         {
-
-            List<Parametro> parametros = new List<Parametro>{
-                new Parametro("id", id.ToString())
-            };
-
-            DataTable dt = DataBase.Listar("sp_se_usuarios",parametros);
+            DataTable dt = UsuariosModel.listaUsuarios(id);
             string jsonUsuarios = JsonConvert.SerializeObject(dt);
 
             return new            
@@ -33,23 +28,10 @@ namespace WebAPI.Controllers
             };                
         }
 
-        [HttpPost(Name = "PutUsuario")]
-        public dynamic PutUsuario(string usuario , string password , int id_persona , string nombre, int id_entidad, int usuario_ultima_modificacion,int id = 0,string comentarios = "", bool activo_sn = true){
-            
-            List<Parametro> parametros = new List<Parametro>()
-            {
-                new Parametro("id", id.ToString()),
-                new Parametro("usuario", usuario),
-                new Parametro("password", password),
-                new Parametro("id_persona", id_persona.ToString()),
-                new Parametro("nombre", nombre),
-                new Parametro("comentarios", comentarios),
-                new Parametro("activo_sn", activo_sn.ToString()),
-                new Parametro("id_entidad", id_entidad.ToString()),
-                new Parametro("usuario_ultima_modificacion", usuario_ultima_modificacion.ToString())
-            };
-
-            DataTable dt = DataBase.Listar("sp_ui_usuario",parametros);
+        [HttpPost(Name = "Actualiza o inserta Usuarios")]
+        public dynamic UsuarioUI(usuarios Usuarios) 
+        {        
+            DataTable dt = UsuariosModel.UIUsuarios(Usuarios);
             string jsonUsuarios = JsonConvert.SerializeObject(dt);
 
             return new            

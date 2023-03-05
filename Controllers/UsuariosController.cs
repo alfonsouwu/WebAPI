@@ -5,30 +5,12 @@ using Newtonsoft.Json;
 
 namespace WebAPI.Controllers
 {
+    [ApiController]
     [Route("[controller]")]
     public class UsuariosController : Controller
     {
-        #region Logger
-        private readonly ILogger<UsuariosController> _logger;
-
-        public UsuariosController(ILogger<UsuariosController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View("Error!");
-        }
-        #endregion
-
         #region CRUD         
+
         [HttpGet(Name = "GetUsuarios")]
         public dynamic ListaUsuarios()
         {
@@ -48,8 +30,7 @@ namespace WebAPI.Controllers
                 {
                     usuarios = json 
                 }
-            };
-                
+            };                
         }
 
         #endregion

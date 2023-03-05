@@ -4,7 +4,7 @@ namespace WebAPI.Resources
 {
     public class DataBase
     {
-        public static string cadenaConexion = "data source=localhost; initial catalog = mysto_db; persist security info = True; Integrated Security = SSPI;";
+        public static string cadenaConexion = "data source=localhost; initial catalog = mysto_db_v2; persist security info = True; Integrated Security = SSPI;";
         public static DataSet ListarTablas(string nombreProcedimiento, List<Parametro> parametros)
         {
             SqlConnection conexion = new SqlConnection(cadenaConexion);

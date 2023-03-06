@@ -23,6 +23,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseMvc();
-
 app.Run();
